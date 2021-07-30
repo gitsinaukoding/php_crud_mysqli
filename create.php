@@ -1,51 +1,38 @@
-<?php include('header.php'); ?>
+<?php
+//mulai proses tambah data
 
-<h3>Tambah Data Siswa</h3>
 
-<form action="create-proses.php" method="post">
-	<table cellpadding="3" cellspacing="0">
-		<tr>
-			<td>NIS</td>
-			<td>:</td>
-			<td><input type="text" name="nis" required></td>
-		</tr>
-		<tr>
-			<td>Nama Lengkap</td>
-			<td>:</td>
-			<td><input type="text" name="nama" size="30" required></td>
-		</tr>
-		<tr>
-			<td>Kelas</td>
-			<td>:</td>
-			<td>
-				<select name="kelas" required>
-					<option value="">Pilih Kelas</option>
-					<option value="X">X</option>
-					<option value="XI">XI</option>
-					<option value="XII">XII</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>Jurusan</td>
-			<td>:</td>
-			<td>
-				<select name="jurusan" required>
-					<option value="">Pilih Jurusan</option>
-					<option value="RPL">RPL</option>
-					<option value="Multimedia">Multimedia</option>
-					<option value="Akuntansi">Akuntansi</option>
-					<option value="Perbankan">Perbankan</option>
-					<option value="Pemasaran">Pemasaran</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td></td>
-			<td><input type="submit" name="tambah" value="Tambah"></td>
-		</tr>
-	</table>
-</form>
+//cek dahulu, jika tombol tambah di klik
+if(isset($_POST['tambah'])){
 
-<?php include('footer.php'); ?>
+	//inlcude atau memasukkan file koneksi ke database
+	include('koneksi.php');
+
+	//jika tombol tambah benar di klik maka lanjut prosesnya
+	$nis		= $_POST['nis'];	//membuat variabel $nis dan datanya dari inputan NIS
+	$nama		= $_POST['nama'];	//membuat variabel $nama dan datanya dari inputan Nama Lengkap
+	$kelas		= $_POST['kelas'];	//membuat variabel $kelas dan datanya dari inputan dropdown Kelas
+	$jurusan	= $_POST['jurusan'];	//membuat variabel $jurusan dan datanya dari inputan dropdown Jurusan
+
+	//melakukan query dengan perintah INSERT INTO untuk memasukkan data ke database
+	$sql = "INSERT INTO siswa VALUES(NULL, '$nis', '$nama', '$kelas', '$jurusan')";
+
+	//jika query input sukses
+	if (mysqli_query($koneksi, $sql)) {
+		echo 'Data berhasil di tambahkan! ';		//Pesan jika proses tambah sukses
+		echo '<a href="index.php">Kembali</a>';	//membuat Link untuk kembali ke halaman tambah
+	} else {
+		echo 'Gagal menambahkan data! ';		//Pesan jika proses tambah gagal
+		echo '<a href="index.php">Kembali</a>';	//membuat Link untuk kembali ke halaman tambah
+		echo "Error: ".$sql.". ".mysqli_error($koneksi);
+	}
+
+}else{	//jika tidak terdeteksi tombol tambah di klik
+
+	//redirect atau dikembalikan ke halaman tambah
+	echo '<script>window.history.back()</script>';
+
+}
+
+?>
+
