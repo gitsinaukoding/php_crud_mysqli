@@ -1,6 +1,5 @@
 <?php
 
-//inlcude atau memasukkan file koneksi ke database
 include('koneksi.php');
 
 $nis = 'A11.123456.78';	

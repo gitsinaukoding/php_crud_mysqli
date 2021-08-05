@@ -1,6 +1,5 @@
 <?php
 
-//inlcude atau memasukkan file koneksi ke database
 include('koneksi.php');
 
 $nis = 'A11.123456.79';	
@@ -20,7 +19,6 @@ if (mysqli_query($koneksi, $sql)) {
 	echo 'Gagal menambahkan data! ';
 	echo "Error: ".$sql.". ".mysqli_error($koneksi);
 }
-
 
 ?>
 
