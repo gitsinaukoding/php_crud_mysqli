@@ -9,12 +9,21 @@
     - tgl_lahir: date
     - jenis_kelamin: enum L, P
     - alamat: varchar 100
-- koneksi.php
-- create.php
-- index.php
-- update.php
-- delete.php
+- php murni
+    - koneksi.php
+    - create.php
+    - index.php
+    - update.php
+    - delete.php
 
 - membuat view html
+    - create.html
+    - index.htmml
+    - update.html
+    - delete.html
 
 - menggabungkan view dengan php
+    - create.php
+    - index.php
+    - update.php
+    - delete.php
